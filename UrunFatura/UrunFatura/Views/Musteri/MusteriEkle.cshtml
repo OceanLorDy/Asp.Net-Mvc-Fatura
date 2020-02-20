@@ -1,0 +1,22 @@
+﻿@using UrunFatura.Models.Entity
+@model List<tbl_Musteri>
+@{
+    @{
+        ViewBag.Title = "MusteriEkle";
+        Layout = "~/Views/Shared/_MainLayout.cshtml";
+    }
+
+    <form class="form-group" method="post">
+        <div>
+            <label>Musteri No:</label>
+            <input type="text" name="MusteriNo" />
+        </div>
+        <div>
+            <label>Musteri Adı:</label>
+            <input type="text" name="MusteriAdi" />
+        </div>
+        <div>
+            <button class="btn btn-info">Musteri Ekle</button>
+        </div>
+    </form>
+

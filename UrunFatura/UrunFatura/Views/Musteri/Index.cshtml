@@ -1,0 +1,23 @@
+﻿@using UrunFatura.Models.Entity
+@model List<tbl_Musteri>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+    <table>
+        <tr>
+            <th>Musteri No&ensp;</th>
+            <th>Musteri Adi</th>
+        </tr>
+        <tbody>
+            @foreach (var musteri in Model)
+            {
+                <tr>
+                    <td>@musteri.MusteriNo</td>
+                    <td>@musteri.MusteriAdi
+                    <td><a href="/Musteri/Sil"class="btn btn-danger">SİL</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/Musteri/MusteriEkle/" class="btn btn-primary">Musteri Ekle</a>

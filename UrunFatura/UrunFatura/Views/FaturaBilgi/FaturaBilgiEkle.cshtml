@@ -1,0 +1,36 @@
+﻿@using UrunFatura.Models.Entity
+@model List<tbl_FaturaBilgi>
+@{
+    ViewBag.Title = "FaturaBilgiEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+    <form class="form-group" method="post">
+        <div>
+            <label>Fatura Bilgi No:</label>
+            <input type="text" name="FBNo" />
+        </div>
+        <div>
+            <label>Fatura No:</label>
+            <input type="text" name="FaturaNo" />
+        </div>
+        <div>
+            <label>Urun Adı:</label>
+            <input type="text" name="FBUrunAdi" />
+        </div>
+        <div>
+            <label>Urun Adedi:</label>
+            <input type="text" name="FBUrunAdet" />
+        </div>
+        <div>
+            <label>Tutar</label>
+            <input type="text" name="FBTutar" />
+        </div>
+        <div>
+            <label>Urun No:</label>
+            <input type="text" name="UrunNo" />
+        </div>
+        <div>
+            <button class="btn btn-info">Fatura Bilgi Ekle</button>
+        </div>
+    </form>
+

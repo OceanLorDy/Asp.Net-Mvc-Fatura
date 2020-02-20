@@ -1,0 +1,29 @@
+﻿@using UrunFatura.Models.Entity
+@model List<tbl_FaturaBilgi>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>Fatura Bilgi No</th>
+        <th>Fatura No</th>
+        <th>Fatura Urun Adi</th>
+        <th>Fatura Urun Adet</th>
+        <th>Fatura Tutar</th>
+    </tr>
+    <tbody>
+        @foreach (var ftr in Model)
+        {
+            <tr>
+                <th>@ftr.FBNo</th>
+                <th>@ftr.FaturaNo</th>
+                <th>@ftr.FBUrunAdi</th>
+                <th>@ftr.FBUrunAdet</th>
+                <th>@ftr.FBTutar</th>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/FaturaBilgi/FaturaBilgiEkle/" class="btn btn-primary">Fatura Bilgi Ekle</a>

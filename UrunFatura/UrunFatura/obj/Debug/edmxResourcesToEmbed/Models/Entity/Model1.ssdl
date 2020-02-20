@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FaturalandirmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tbl_Fatura">
+    <Key>
+      <PropertyRef Name="FaturaNo" />
+    </Key>
+    <Property Name="FaturaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FaturaNo" Type="int" Nullable="false" />
+    <Property Name="FaturaTutar" Type="money" />
+    <Property Name="MusteriNo" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_FaturaBilgi">
+    <Key>
+      <PropertyRef Name="FBNo" />
+    </Key>
+    <Property Name="FBId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FBNo" Type="int" Nullable="false" />
+    <Property Name="FaturaNo" Type="int" />
+    <Property Name="FBUrunAdi" Type="nvarchar" MaxLength="20" />
+    <Property Name="FBUrunAdet" Type="int" />
+    <Property Name="FBTutar" Type="money" />
+    <Property Name="UrunNo" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Musteri">
+    <Key>
+      <PropertyRef Name="MusteriNo" />
+    </Key>
+    <Property Name="MusteriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MusteriNo" Type="int" Nullable="false" />
+    <Property Name="MusteriAdi" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="tbl_Urun">
+    <Key>
+      <PropertyRef Name="UrunNo" />
+    </Key>
+    <Property Name="UrunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunNo" Type="int" Nullable="false" />
+    <Property Name="UrunAdi" Type="nvarchar" MaxLength="20" />
+    <Property Name="UrunFiyat" Type="money" />
+  </EntityType>
+  <Association Name="FK_tbl_Fatura_tbl_Musteri1">
+    <End Role="tbl_Musteri" Type="Self.tbl_Musteri" Multiplicity="0..1" />
+    <End Role="tbl_Fatura" Type="Self.tbl_Fatura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Musteri">
+        <PropertyRef Name="MusteriNo" />
+      </Principal>
+      <Dependent Role="tbl_Fatura">
+        <PropertyRef Name="MusteriNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_FaturaBilgi_tbl_Fatura">
+    <End Role="tbl_Fatura" Type="Self.tbl_Fatura" Multiplicity="1" />
+    <End Role="tbl_FaturaBilgi" Type="Self.tbl_FaturaBilgi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Fatura">
+        <PropertyRef Name="FaturaNo" />
+      </Principal>
+      <Dependent Role="tbl_FaturaBilgi">
+        <PropertyRef Name="FBId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_FaturaBilgi_tbl_Urun">
+    <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
+    <End Role="tbl_FaturaBilgi" Type="Self.tbl_FaturaBilgi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Urun">
+        <PropertyRef Name="UrunNo" />
+      </Principal>
+      <Dependent Role="tbl_FaturaBilgi">
+        <PropertyRef Name="UrunNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FaturalandirmaModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Fatura" EntityType="Self.tbl_Fatura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_FaturaBilgi" EntityType="Self.tbl_FaturaBilgi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Musteri" EntityType="Self.tbl_Musteri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Urun" EntityType="Self.tbl_Urun" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbl_Fatura_tbl_Musteri1" Association="Self.FK_tbl_Fatura_tbl_Musteri1">
+      <End Role="tbl_Musteri" EntitySet="tbl_Musteri" />
+      <End Role="tbl_Fatura" EntitySet="tbl_Fatura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_FaturaBilgi_tbl_Fatura" Association="Self.FK_tbl_FaturaBilgi_tbl_Fatura">
+      <End Role="tbl_Fatura" EntitySet="tbl_Fatura" />
+      <End Role="tbl_FaturaBilgi" EntitySet="tbl_FaturaBilgi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_FaturaBilgi_tbl_Urun" Association="Self.FK_tbl_FaturaBilgi_tbl_Urun">
+      <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+      <End Role="tbl_FaturaBilgi" EntitySet="tbl_FaturaBilgi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
