@@ -21,7 +21,7 @@ namespace UrunFatura.Models.Entity
         }
     
         public int UrunId { get; set; }
-        public int UrunNo { get; set; }
+        public Nullable<int> UrunNo { get; set; }
         public string UrunAdi { get; set; }
         public Nullable<decimal> UrunFiyat { get; set; }
     

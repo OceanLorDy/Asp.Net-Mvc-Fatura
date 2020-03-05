@@ -136,6 +136,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataContext.cs" />
     <Compile Include="Models\Entity\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -166,6 +167,7 @@
     <Compile Include="Models\Entity\tbl_Urun.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\F_U_ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +237,9 @@
     <Content Include="Views\Fatura\FaturaEkle.cshtml" />
     <Content Include="Views\FaturaBilgi\FaturaBilgiEkle.cshtml" />
     <Content Include="Views\FaturaBilgi\Index.cshtml" />
+    <Content Include="Views\FaturaBilgi\FaturaNoEkle.cshtml" />
+    <Content Include="Views\Urun\UrunGetir.cshtml" />
+    <Content Include="Views\Fatura\FaturaGoruntule.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

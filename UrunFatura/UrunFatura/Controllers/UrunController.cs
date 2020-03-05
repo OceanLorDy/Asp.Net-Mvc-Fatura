@@ -25,9 +25,36 @@ namespace UrunFatura.Controllers
         [HttpPost]
         public ActionResult UrunEkle(tbl_Urun u1)
         {
+            if (!ModelState.IsValid)
+            {
+                
+                return View("Index");
+            }
             db.tbl_Urun.Add(u1);
             db.SaveChanges();
-            return View();
+            return View("UrunEkle");
+        }
+        public ActionResult UrunSil(int id)
+        {
+            var urun = db.tbl_Urun.Find(id);
+            db.tbl_Urun.Remove(urun);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult UrunGetir(int id)
+        {
+            var urun = db.tbl_Urun.Find(id);
+            return View("UrunGetir", urun);
+        }
+        public ActionResult UrunGuncelle(tbl_Urun p1)
+        {
+            var urun = db.tbl_Urun.Find(p1.UrunId);
+            urun.UrunNo = p1.UrunNo;
+            urun.UrunAdi = p1.UrunAdi;
+            urun.UrunFiyat = p1.UrunFiyat;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

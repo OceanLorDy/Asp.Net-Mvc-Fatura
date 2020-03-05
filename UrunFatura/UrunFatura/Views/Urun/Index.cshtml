@@ -4,12 +4,65 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+<title>DataTables example - Javascript sourced data</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+
+<link rel="stylesheet" type="text/css" href="../demo.css">
+<style type="text/css" class="init">
+
+    div.dataTables_wrapper {
+        margin-bottom: 3em;
+    }
+</style>
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" class="init">
+
+
+
+var dataSet = [
+    [ "Tiger Nixon", "5421", "320,800" ],
+    [ "Garrett Winters", "8422", "170,750" ],
+];
+
+
+
+$(document).ready(function() {
+	$('#example').DataTable( {
+    data: @foreach (var urun in Model)
+        { 
+               @urun.UrunNo
+               @urun.UrunAdi
+               @urun.UrunFiyat
+        }
+        columns: [
+            { title: "Urun Adı" },
+			{ title: "Urun No" },
+            { title: "Urun Fiyatı" },
+            { title: "" },
+            { title: "" }
+		]
+	} );
+} );
+
+
+</script>
+
+<body class="dt-example">
+    <div class="container">
+        <div class="demo-html"></div>
+        <table id="example" class="display" width="100%"></table>
+    </div>
+
+</body>
 
 <table class="table">
     <tr>
         <th>Urun No</th>
         <th>Urun Adı</th>
         <th>Urun Fiyatı</th>
+        <th></th>
+        <th></th>
     </tr>
     <tbody>
         @foreach (var urun in Model)
@@ -18,7 +71,8 @@
                 <th>@urun.UrunNo</th>
                 <th>@urun.UrunAdi</th>
                 <th>@urun.UrunFiyat</th>
-                <th><a href="/Musteri/Sil" class="btn btn-danger">SİL</a></th>
+                <th><a href="/Urun/UrunSil/@urun.UrunId" class="btn btn-danger">SİL</a></th>
+                <th><a href="/Urun/UrunGetir/@urun.UrunId" class="btn btn-success">GÜNCELLE</a></th>
             </tr>
         }
     </tbody>

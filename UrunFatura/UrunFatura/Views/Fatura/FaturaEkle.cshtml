@@ -1,13 +1,12 @@
-﻿@using UrunFatura.Models.Entity
-@model List<tbl_Fatura>
+﻿@model UrunFatura.Models.Entity.tbl_Musteri
 @{
     ViewBag.Title = "FaturaEkle";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
     <form class="form-group" method="post">
         <div>
-            <label>Musteri No:</label>
-            <input type="text" name="MusteriNo" />
+            <label>Musteri Id:</label>
+            @Html.DropDownListFor(m => m.MusteriId, (List<SelectListItem>)ViewBag.dgr, new { @class="form-control"})
         </div>
         <div>
             <label>Fatura No:</label>

@@ -29,5 +29,12 @@ namespace UrunFatura.Controllers
             db.SaveChanges();
             return View();
         }
+        public ActionResult MusteriSil(int id)
+        {
+            var musteri = db.tbl_Musteri.Find(id);
+            db.tbl_Musteri.Remove(musteri);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

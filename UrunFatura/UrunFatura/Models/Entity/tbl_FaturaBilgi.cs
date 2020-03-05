@@ -15,12 +15,12 @@ namespace UrunFatura.Models.Entity
     public partial class tbl_FaturaBilgi
     {
         public int FBId { get; set; }
-        public int FBNo { get; set; }
         public Nullable<int> FaturaNo { get; set; }
         public string FBUrunAdi { get; set; }
         public Nullable<int> FBUrunAdet { get; set; }
         public Nullable<decimal> FBTutar { get; set; }
-        public Nullable<int> UrunNo { get; set; }
+        public Nullable<int> UrunId { get; set; }
+        public Nullable<int> FBNo { get; set; }
     
         public virtual tbl_Fatura tbl_Fatura { get; set; }
         public virtual tbl_Urun tbl_Urun { get; set; }

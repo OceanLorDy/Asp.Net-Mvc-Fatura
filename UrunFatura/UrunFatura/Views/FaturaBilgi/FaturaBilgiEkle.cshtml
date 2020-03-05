@@ -1,36 +1,34 @@
-﻿@using UrunFatura.Models.Entity
-@model List<tbl_FaturaBilgi>
+﻿@model UrunFatura.Models.Entity.tbl_Urun
 @{
     ViewBag.Title = "FaturaBilgiEkle";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-    <form class="form-group" method="post">
-        <div>
-            <label>Fatura Bilgi No:</label>
-            <input type="text" name="FBNo" />
-        </div>
-        <div>
-            <label>Fatura No:</label>
-            <input type="text" name="FaturaNo" />
-        </div>
-        <div>
-            <label>Urun Adı:</label>
-            <input type="text" name="FBUrunAdi" />
-        </div>
-        <div>
-            <label>Urun Adedi:</label>
-            <input type="text" name="FBUrunAdet" />
-        </div>
-        <div>
-            <label>Tutar</label>
-            <input type="text" name="FBTutar" />
-        </div>
-        <div>
-            <label>Urun No:</label>
-            <input type="text" name="UrunNo" />
-        </div>
-        <div>
-            <button class="btn btn-info">Fatura Bilgi Ekle</button>
-        </div>
-    </form>
+<form class="form-group" method="post">
+    <div>
+        <label>Fatura No:</label>
+        <input type="text" name="FaturaNo" />
+        @*@Html.DropDownList(foreach (var Fatura in Model.Fatura)
+        {
+            @Fatura.FaturaNo
+        }))*@
+        @*<select name="FaturaNo">
+            <option value="0">Please select</option>
+            @foreach (var Fatura in Model.Fatura)
+            {
+                <option value="@Fatura.FaturaNo">@Fatura.FaturaNo</option>
+            }
+        </select>*@
+    </div>
+    <div>
+        <label>Urun Adı:</label>
+        @Html.DropDownListFor(k => k.UrunId, (List<SelectListItem>)ViewBag.dgr, new { @name="FBUrunAdi"})
+    </div>
+    <div>
+        <label>Urun Adedi:</label>
+        <input type="text" name="FBUrunAdet" />
+    </div>
+    <div>
+        <button class="btn btn-info">Fatura Bilgi Ekle</button>
+    </div>
+</form>
 

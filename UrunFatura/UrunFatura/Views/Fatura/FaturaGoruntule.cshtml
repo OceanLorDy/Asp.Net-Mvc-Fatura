@@ -1,0 +1,46 @@
+﻿@using UrunFatura.Models.Entity
+@model IEnumerable<tbl_FaturaBilgi>
+@{
+    ViewBag.Title = "FaturaGoruntule";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@*@using (Html.BeginForm("FaturaGoruntule", "Fatura", FormMethod.Get))*@
+{
+    @*<p>@Html.TextBoxFor(f => f.FaturaNo, new { @readonly = "readonly", Style = "background:#000000; color:white;", })</p>*@
+
+    @*<div>
+            @Html.LabelFor(f => f.FBUrunAdi)
+            @Html.TextBoxFor(f => f.FBUrunAdi)
+        </div>
+        <div>
+            @Html.LabelFor(f => f.FBUrunAdet)
+            @Html.TextBoxFor(f => f.FBUrunAdet)
+        </div>
+        <div>
+            @Html.LabelFor(f => f.FBTutar)
+            @Html.TextBoxFor(f => f.FBTutar)
+        </div>*@
+    <table class="table">
+        <tr>
+            <th>Fatura No</th>
+            <th>Fatura Urun Adi</th>
+            <th>Fatura Urun Adet</th>
+            <th>Fatura Tutar</th>
+        </tr>
+        <tbody>
+            @foreach (var ftr in Model)
+                {
+                    <tr>
+                        <th>@ftr.FaturaNo</th>
+                        <th>@ftr.FBUrunAdi</th>
+                        <th>@ftr.FBUrunAdet</th>
+                        <th>@ftr.FBTutar</th>
+                    </tr>
+                }
+        </tbody>
+        <tbody>
+
+        </tbody>
+    </table>
+    <p>Sonunda</p>
+}

@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="56f40add953442b6976bfecb149729c0" Name="Diagram1">
-        <EntityTypeShape EntityType="FaturalandirmaModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FaturalandirmaModel.tbl_Fatura" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FaturalandirmaModel.tbl_FaturaBilgi" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="FaturalandirmaModel.tbl_Musteri" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FaturalandirmaModel.tbl_Urun" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <AssociationConnector Association="FaturalandirmaModel.FK_tbl_Fatura_tbl_Musteri1" ManuallyRouted="false" />
-        <AssociationConnector Association="FaturalandirmaModel.FK_tbl_FaturaBilgi_tbl_Fatura" ManuallyRouted="false" />
-        <AssociationConnector Association="FaturalandirmaModel.FK_tbl_FaturaBilgi_tbl_Urun" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FaturalandirmaModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="FaturalandirmaModel.tbl_Fatura" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="FaturalandirmaModel.tbl_FaturaBilgi" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="FaturalandirmaModel.tbl_Musteri" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="FaturalandirmaModel.tbl_Urun" Width="1.5" PointX="3" PointY="5.375" />
+        <AssociationConnector Association="FaturalandirmaModel.FK_tbl_Fatura_tbl_Musteri" />
+        <AssociationConnector Association="FaturalandirmaModel.FK_tbl_FaturaBilgi_tbl_Fatura" />
+        <AssociationConnector Association="FaturalandirmaModel.FK_tbl_FaturaBilgi_tbl_Urun" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

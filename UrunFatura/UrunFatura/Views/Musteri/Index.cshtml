@@ -8,6 +8,7 @@
         <tr>
             <th>Musteri No&ensp;</th>
             <th>Musteri Adi</th>
+            <th></th>
         </tr>
         <tbody>
             @foreach (var musteri in Model)
@@ -15,7 +16,7 @@
                 <tr>
                     <td>@musteri.MusteriNo</td>
                     <td>@musteri.MusteriAdi
-                    <td><a href="/Musteri/Sil"class="btn btn-danger">SİL</a></td>
+                    <td><a href="/Musteri/MusteriSil/@musteri.MusteriId"class="btn btn-danger">SİL</a></td>
                 </tr>
             }
         </tbody>

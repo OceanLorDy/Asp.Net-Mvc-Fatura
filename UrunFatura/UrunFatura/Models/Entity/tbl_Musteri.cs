@@ -21,7 +21,7 @@ namespace UrunFatura.Models.Entity
         }
     
         public int MusteriId { get; set; }
-        public int MusteriNo { get; set; }
+        public Nullable<int> MusteriNo { get; set; }
         public string MusteriAdi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

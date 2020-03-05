@@ -1,23 +1,23 @@
-﻿
+﻿@model UrunFatura.Models.Entity.tbl_Urun
 @{
     ViewBag.Title = "UrunEkle";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<form class="form-group" method="post">
-    <div>
-        <label>Urun No:</label>
-        <input type="text" name="UrunNo" />
-    </div>
-    <div>
-        <label>Urun Adı:</label>
-        <input type="text" name="UrunAdi" />
-    </div>
-    <div>
-        <label>Urun Fiyatı:</label>
-        <input type="text" name="UrunFiyat" />
-    </div>
-    <div>
-        <button class="btn btn-info">Urun Ekle</button>
-    </div>
-</form>
+    <form class="form-group" method="post">
+            <div>
+                <label>Urun No:</label>
+                <input type="number" name="UrunNo" required/>
+            </div>
+            <div>
+                <label>Urun Adı:</label>
+                <input type="text" name="UrunAdi" />
+            </div>
+            <div>
+                <label>Urun Fiyatı:</label>
+                <input type="number" pattern="[0-9]*" name="UrunFiyat" required/>
+            </div>
+            <div>
+                <button class="btn btn-info">Urun Ekle</button>
+            </div>
+    </form>

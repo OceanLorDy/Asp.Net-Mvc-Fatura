@@ -17,58 +17,58 @@
     <Property Name="FaturaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FaturaNo" Type="int" Nullable="false" />
     <Property Name="FaturaTutar" Type="money" />
-    <Property Name="MusteriNo" Type="int" />
+    <Property Name="MusteriId" Type="int" />
   </EntityType>
   <EntityType Name="tbl_FaturaBilgi">
     <Key>
-      <PropertyRef Name="FBNo" />
+      <PropertyRef Name="FBId" />
     </Key>
     <Property Name="FBId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FBNo" Type="int" Nullable="false" />
     <Property Name="FaturaNo" Type="int" />
     <Property Name="FBUrunAdi" Type="nvarchar" MaxLength="20" />
     <Property Name="FBUrunAdet" Type="int" />
     <Property Name="FBTutar" Type="money" />
-    <Property Name="UrunNo" Type="int" />
+    <Property Name="UrunId" Type="int" />
+    <Property Name="FBNo" Type="int" />
   </EntityType>
   <EntityType Name="tbl_Musteri">
     <Key>
-      <PropertyRef Name="MusteriNo" />
+      <PropertyRef Name="MusteriId" />
     </Key>
     <Property Name="MusteriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="MusteriNo" Type="int" Nullable="false" />
+    <Property Name="MusteriNo" Type="int" />
     <Property Name="MusteriAdi" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="tbl_Urun">
     <Key>
-      <PropertyRef Name="UrunNo" />
+      <PropertyRef Name="UrunId" />
     </Key>
     <Property Name="UrunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UrunNo" Type="int" Nullable="false" />
+    <Property Name="UrunNo" Type="int" />
     <Property Name="UrunAdi" Type="nvarchar" MaxLength="20" />
     <Property Name="UrunFiyat" Type="money" />
   </EntityType>
-  <Association Name="FK_tbl_Fatura_tbl_Musteri1">
+  <Association Name="FK_tbl_Fatura_tbl_Musteri">
     <End Role="tbl_Musteri" Type="Self.tbl_Musteri" Multiplicity="0..1" />
     <End Role="tbl_Fatura" Type="Self.tbl_Fatura" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbl_Musteri">
-        <PropertyRef Name="MusteriNo" />
+        <PropertyRef Name="MusteriId" />
       </Principal>
       <Dependent Role="tbl_Fatura">
-        <PropertyRef Name="MusteriNo" />
+        <PropertyRef Name="MusteriId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_tbl_FaturaBilgi_tbl_Fatura">
-    <End Role="tbl_Fatura" Type="Self.tbl_Fatura" Multiplicity="1" />
+    <End Role="tbl_Fatura" Type="Self.tbl_Fatura" Multiplicity="0..1" />
     <End Role="tbl_FaturaBilgi" Type="Self.tbl_FaturaBilgi" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbl_Fatura">
         <PropertyRef Name="FaturaNo" />
       </Principal>
       <Dependent Role="tbl_FaturaBilgi">
-        <PropertyRef Name="FBId" />
+        <PropertyRef Name="FaturaNo" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -77,10 +77,10 @@
     <End Role="tbl_FaturaBilgi" Type="Self.tbl_FaturaBilgi" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbl_Urun">
-        <PropertyRef Name="UrunNo" />
+        <PropertyRef Name="UrunId" />
       </Principal>
       <Dependent Role="tbl_FaturaBilgi">
-        <PropertyRef Name="UrunNo" />
+        <PropertyRef Name="UrunId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -90,7 +90,7 @@
     <EntitySet Name="tbl_FaturaBilgi" EntityType="Self.tbl_FaturaBilgi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Musteri" EntityType="Self.tbl_Musteri" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Urun" EntityType="Self.tbl_Urun" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_tbl_Fatura_tbl_Musteri1" Association="Self.FK_tbl_Fatura_tbl_Musteri1">
+    <AssociationSet Name="FK_tbl_Fatura_tbl_Musteri" Association="Self.FK_tbl_Fatura_tbl_Musteri">
       <End Role="tbl_Musteri" EntitySet="tbl_Musteri" />
       <End Role="tbl_Fatura" EntitySet="tbl_Fatura" />
     </AssociationSet>

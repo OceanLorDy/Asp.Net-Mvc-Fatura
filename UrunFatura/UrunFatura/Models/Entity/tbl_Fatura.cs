@@ -23,7 +23,7 @@ namespace UrunFatura.Models.Entity
         public int FaturaId { get; set; }
         public int FaturaNo { get; set; }
         public Nullable<decimal> FaturaTutar { get; set; }
-        public Nullable<int> MusteriNo { get; set; }
+        public Nullable<int> MusteriId { get; set; }
     
         public virtual tbl_Musteri tbl_Musteri { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

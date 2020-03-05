@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FaturalandirmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FaturalandirmaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -22,58 +22,58 @@
           <Property Name="FaturaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FaturaNo" Type="int" Nullable="false" />
           <Property Name="FaturaTutar" Type="money" />
-          <Property Name="MusteriNo" Type="int" />
+          <Property Name="MusteriId" Type="int" />
         </EntityType>
         <EntityType Name="tbl_FaturaBilgi">
           <Key>
-            <PropertyRef Name="FBNo" />
+            <PropertyRef Name="FBId" />
           </Key>
           <Property Name="FBId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FBNo" Type="int" Nullable="false" />
           <Property Name="FaturaNo" Type="int" />
           <Property Name="FBUrunAdi" Type="nvarchar" MaxLength="20" />
           <Property Name="FBUrunAdet" Type="int" />
           <Property Name="FBTutar" Type="money" />
-          <Property Name="UrunNo" Type="int" />
+          <Property Name="UrunId" Type="int" />
+          <Property Name="FBNo" Type="int" />
         </EntityType>
         <EntityType Name="tbl_Musteri">
           <Key>
-            <PropertyRef Name="MusteriNo" />
+            <PropertyRef Name="MusteriId" />
           </Key>
           <Property Name="MusteriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MusteriNo" Type="int" Nullable="false" />
+          <Property Name="MusteriNo" Type="int" />
           <Property Name="MusteriAdi" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="tbl_Urun">
           <Key>
-            <PropertyRef Name="UrunNo" />
+            <PropertyRef Name="UrunId" />
           </Key>
           <Property Name="UrunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UrunNo" Type="int" Nullable="false" />
+          <Property Name="UrunNo" Type="int" />
           <Property Name="UrunAdi" Type="nvarchar" MaxLength="20" />
           <Property Name="UrunFiyat" Type="money" />
         </EntityType>
-        <Association Name="FK_tbl_Fatura_tbl_Musteri1">
+        <Association Name="FK_tbl_Fatura_tbl_Musteri">
           <End Role="tbl_Musteri" Type="Self.tbl_Musteri" Multiplicity="0..1" />
           <End Role="tbl_Fatura" Type="Self.tbl_Fatura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_Musteri">
-              <PropertyRef Name="MusteriNo" />
+              <PropertyRef Name="MusteriId" />
             </Principal>
             <Dependent Role="tbl_Fatura">
-              <PropertyRef Name="MusteriNo" />
+              <PropertyRef Name="MusteriId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_FaturaBilgi_tbl_Fatura">
-          <End Role="tbl_Fatura" Type="Self.tbl_Fatura" Multiplicity="1" />
+          <End Role="tbl_Fatura" Type="Self.tbl_Fatura" Multiplicity="0..1" />
           <End Role="tbl_FaturaBilgi" Type="Self.tbl_FaturaBilgi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_Fatura">
               <PropertyRef Name="FaturaNo" />
             </Principal>
             <Dependent Role="tbl_FaturaBilgi">
-              <PropertyRef Name="FBId" />
+              <PropertyRef Name="FaturaNo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -82,10 +82,10 @@
           <End Role="tbl_FaturaBilgi" Type="Self.tbl_FaturaBilgi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_Urun">
-              <PropertyRef Name="UrunNo" />
+              <PropertyRef Name="UrunId" />
             </Principal>
             <Dependent Role="tbl_FaturaBilgi">
-              <PropertyRef Name="UrunNo" />
+              <PropertyRef Name="UrunId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -95,7 +95,7 @@
           <EntitySet Name="tbl_FaturaBilgi" EntityType="Self.tbl_FaturaBilgi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Musteri" EntityType="Self.tbl_Musteri" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Urun" EntityType="Self.tbl_Urun" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_tbl_Fatura_tbl_Musteri1" Association="Self.FK_tbl_Fatura_tbl_Musteri1">
+          <AssociationSet Name="FK_tbl_Fatura_tbl_Musteri" Association="Self.FK_tbl_Fatura_tbl_Musteri">
             <End Role="tbl_Musteri" EntitySet="tbl_Musteri" />
             <End Role="tbl_Fatura" EntitySet="tbl_Fatura" />
           </AssociationSet>
@@ -108,16 +108,34 @@
             <End Role="tbl_FaturaBilgi" EntitySet="tbl_FaturaBilgi" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FaturalandirmaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FaturalandirmaEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="FaturalandirmaModel.sysdiagrams" />
+          <EntitySet Name="tbl_Fatura" EntityType="FaturalandirmaModel.tbl_Fatura" />
+          <EntitySet Name="tbl_FaturaBilgi" EntityType="FaturalandirmaModel.tbl_FaturaBilgi" />
+          <EntitySet Name="tbl_Musteri" EntityType="FaturalandirmaModel.tbl_Musteri" />
+          <EntitySet Name="tbl_Urun" EntityType="FaturalandirmaModel.tbl_Urun" />
+          <AssociationSet Name="FK_tbl_Fatura_tbl_Musteri" Association="FaturalandirmaModel.FK_tbl_Fatura_tbl_Musteri">
+            <End Role="tbl_Musteri" EntitySet="tbl_Musteri" />
+            <End Role="tbl_Fatura" EntitySet="tbl_Fatura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_FaturaBilgi_tbl_Fatura" Association="FaturalandirmaModel.FK_tbl_FaturaBilgi_tbl_Fatura">
+            <End Role="tbl_Fatura" EntitySet="tbl_Fatura" />
+            <End Role="tbl_FaturaBilgi" EntitySet="tbl_FaturaBilgi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbl_FaturaBilgi_tbl_Urun" Association="FaturalandirmaModel.FK_tbl_FaturaBilgi_tbl_Urun">
+            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+            <End Role="tbl_FaturaBilgi" EntitySet="tbl_FaturaBilgi" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -130,98 +148,79 @@
           <Property Name="FaturaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FaturaNo" Type="Int32" Nullable="false" />
           <Property Name="FaturaTutar" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="MusteriNo" Type="Int32" />
-          <NavigationProperty Name="tbl_Musteri" Relationship="Self.FK_tbl_Fatura_tbl_Musteri1" FromRole="tbl_Fatura" ToRole="tbl_Musteri" />
-          <NavigationProperty Name="tbl_FaturaBilgi" Relationship="Self.FK_tbl_FaturaBilgi_tbl_Fatura" FromRole="tbl_Fatura" ToRole="tbl_FaturaBilgi" />
+          <Property Name="MusteriId" Type="Int32" />
+          <NavigationProperty Name="tbl_Musteri" Relationship="FaturalandirmaModel.FK_tbl_Fatura_tbl_Musteri" FromRole="tbl_Fatura" ToRole="tbl_Musteri" />
+          <NavigationProperty Name="tbl_FaturaBilgi" Relationship="FaturalandirmaModel.FK_tbl_FaturaBilgi_tbl_Fatura" FromRole="tbl_Fatura" ToRole="tbl_FaturaBilgi" />
         </EntityType>
         <EntityType Name="tbl_FaturaBilgi">
           <Key>
-            <PropertyRef Name="FBNo" />
+            <PropertyRef Name="FBId" />
           </Key>
           <Property Name="FBId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FBNo" Type="Int32" Nullable="false" />
           <Property Name="FaturaNo" Type="Int32" />
           <Property Name="FBUrunAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="FBUrunAdet" Type="Int32" />
           <Property Name="FBTutar" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="UrunNo" Type="Int32" />
-          <NavigationProperty Name="tbl_Fatura" Relationship="Self.FK_tbl_FaturaBilgi_tbl_Fatura" FromRole="tbl_FaturaBilgi" ToRole="tbl_Fatura" />
-          <NavigationProperty Name="tbl_Urun" Relationship="Self.FK_tbl_FaturaBilgi_tbl_Urun" FromRole="tbl_FaturaBilgi" ToRole="tbl_Urun" />
+          <Property Name="UrunId" Type="Int32" />
+          <Property Name="FBNo" Type="Int32" />
+          <NavigationProperty Name="tbl_Fatura" Relationship="FaturalandirmaModel.FK_tbl_FaturaBilgi_tbl_Fatura" FromRole="tbl_FaturaBilgi" ToRole="tbl_Fatura" />
+          <NavigationProperty Name="tbl_Urun" Relationship="FaturalandirmaModel.FK_tbl_FaturaBilgi_tbl_Urun" FromRole="tbl_FaturaBilgi" ToRole="tbl_Urun" />
         </EntityType>
         <EntityType Name="tbl_Musteri">
           <Key>
-            <PropertyRef Name="MusteriNo" />
+            <PropertyRef Name="MusteriId" />
           </Key>
           <Property Name="MusteriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MusteriNo" Type="Int32" Nullable="false" />
+          <Property Name="MusteriNo" Type="Int32" />
           <Property Name="MusteriAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbl_Fatura" Relationship="Self.FK_tbl_Fatura_tbl_Musteri1" FromRole="tbl_Musteri" ToRole="tbl_Fatura" />
+          <NavigationProperty Name="tbl_Fatura" Relationship="FaturalandirmaModel.FK_tbl_Fatura_tbl_Musteri" FromRole="tbl_Musteri" ToRole="tbl_Fatura" />
         </EntityType>
         <EntityType Name="tbl_Urun">
           <Key>
-            <PropertyRef Name="UrunNo" />
+            <PropertyRef Name="UrunId" />
           </Key>
           <Property Name="UrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UrunNo" Type="Int32" Nullable="false" />
+          <Property Name="UrunNo" Type="Int32" />
           <Property Name="UrunAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="UrunFiyat" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="tbl_FaturaBilgi" Relationship="Self.FK_tbl_FaturaBilgi_tbl_Urun" FromRole="tbl_Urun" ToRole="tbl_FaturaBilgi" />
+          <NavigationProperty Name="tbl_FaturaBilgi" Relationship="FaturalandirmaModel.FK_tbl_FaturaBilgi_tbl_Urun" FromRole="tbl_Urun" ToRole="tbl_FaturaBilgi" />
         </EntityType>
-        <Association Name="FK_tbl_Fatura_tbl_Musteri1">
-          <End Role="tbl_Musteri" Type="Self.tbl_Musteri" Multiplicity="0..1" />
-          <End Role="tbl_Fatura" Type="Self.tbl_Fatura" Multiplicity="*" />
+        <Association Name="FK_tbl_Fatura_tbl_Musteri">
+          <End Type="FaturalandirmaModel.tbl_Musteri" Role="tbl_Musteri" Multiplicity="0..1" />
+          <End Type="FaturalandirmaModel.tbl_Fatura" Role="tbl_Fatura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_Musteri">
-              <PropertyRef Name="MusteriNo" />
+              <PropertyRef Name="MusteriId" />
             </Principal>
             <Dependent Role="tbl_Fatura">
-              <PropertyRef Name="MusteriNo" />
+              <PropertyRef Name="MusteriId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_FaturaBilgi_tbl_Fatura">
-          <End Role="tbl_Fatura" Type="Self.tbl_Fatura" Multiplicity="1" />
-          <End Role="tbl_FaturaBilgi" Type="Self.tbl_FaturaBilgi" Multiplicity="*" />
+          <End Type="FaturalandirmaModel.tbl_Fatura" Role="tbl_Fatura" Multiplicity="0..1" />
+          <End Type="FaturalandirmaModel.tbl_FaturaBilgi" Role="tbl_FaturaBilgi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_Fatura">
               <PropertyRef Name="FaturaNo" />
             </Principal>
             <Dependent Role="tbl_FaturaBilgi">
-              <PropertyRef Name="FBId" />
+              <PropertyRef Name="FaturaNo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tbl_FaturaBilgi_tbl_Urun">
-          <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="0..1" />
-          <End Role="tbl_FaturaBilgi" Type="Self.tbl_FaturaBilgi" Multiplicity="*" />
+          <End Type="FaturalandirmaModel.tbl_Urun" Role="tbl_Urun" Multiplicity="0..1" />
+          <End Type="FaturalandirmaModel.tbl_FaturaBilgi" Role="tbl_FaturaBilgi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tbl_Urun">
-              <PropertyRef Name="UrunNo" />
+              <PropertyRef Name="UrunId" />
             </Principal>
             <Dependent Role="tbl_FaturaBilgi">
-              <PropertyRef Name="UrunNo" />
+              <PropertyRef Name="UrunId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FaturalandirmaEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="tbl_Fatura" EntityType="Self.tbl_Fatura" />
-          <EntitySet Name="tbl_FaturaBilgi" EntityType="Self.tbl_FaturaBilgi" />
-          <EntitySet Name="tbl_Musteri" EntityType="Self.tbl_Musteri" />
-          <EntitySet Name="tbl_Urun" EntityType="Self.tbl_Urun" />
-          <AssociationSet Name="FK_tbl_Fatura_tbl_Musteri1" Association="Self.FK_tbl_Fatura_tbl_Musteri1">
-            <End Role="tbl_Musteri" EntitySet="tbl_Musteri" />
-            <End Role="tbl_Fatura" EntitySet="tbl_Fatura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_FaturaBilgi_tbl_Fatura" Association="Self.FK_tbl_FaturaBilgi_tbl_Fatura">
-            <End Role="tbl_Fatura" EntitySet="tbl_Fatura" />
-            <End Role="tbl_FaturaBilgi" EntitySet="tbl_FaturaBilgi" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbl_FaturaBilgi_tbl_Urun" Association="Self.FK_tbl_FaturaBilgi_tbl_Urun">
-            <End Role="tbl_Urun" EntitySet="tbl_Urun" />
-            <End Role="tbl_FaturaBilgi" EntitySet="tbl_FaturaBilgi" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -231,53 +230,53 @@
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="FaturalandirmaModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_Fatura">
             <EntityTypeMapping TypeName="FaturalandirmaModel.tbl_Fatura">
               <MappingFragment StoreEntitySet="tbl_Fatura">
-                <ScalarProperty Name="FaturaId" ColumnName="FaturaId" />
-                <ScalarProperty Name="FaturaNo" ColumnName="FaturaNo" />
+                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
                 <ScalarProperty Name="FaturaTutar" ColumnName="FaturaTutar" />
-                <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+                <ScalarProperty Name="FaturaNo" ColumnName="FaturaNo" />
+                <ScalarProperty Name="FaturaId" ColumnName="FaturaId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_FaturaBilgi">
             <EntityTypeMapping TypeName="FaturalandirmaModel.tbl_FaturaBilgi">
               <MappingFragment StoreEntitySet="tbl_FaturaBilgi">
-                <ScalarProperty Name="FBId" ColumnName="FBId" />
                 <ScalarProperty Name="FBNo" ColumnName="FBNo" />
-                <ScalarProperty Name="FaturaNo" ColumnName="FaturaNo" />
-                <ScalarProperty Name="FBUrunAdi" ColumnName="FBUrunAdi" />
-                <ScalarProperty Name="FBUrunAdet" ColumnName="FBUrunAdet" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
                 <ScalarProperty Name="FBTutar" ColumnName="FBTutar" />
-                <ScalarProperty Name="UrunNo" ColumnName="UrunNo" />
+                <ScalarProperty Name="FBUrunAdet" ColumnName="FBUrunAdet" />
+                <ScalarProperty Name="FBUrunAdi" ColumnName="FBUrunAdi" />
+                <ScalarProperty Name="FaturaNo" ColumnName="FaturaNo" />
+                <ScalarProperty Name="FBId" ColumnName="FBId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_Musteri">
             <EntityTypeMapping TypeName="FaturalandirmaModel.tbl_Musteri">
               <MappingFragment StoreEntitySet="tbl_Musteri">
-                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
-                <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
                 <ScalarProperty Name="MusteriAdi" ColumnName="MusteriAdi" />
+                <ScalarProperty Name="MusteriNo" ColumnName="MusteriNo" />
+                <ScalarProperty Name="MusteriId" ColumnName="MusteriId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tbl_Urun">
             <EntityTypeMapping TypeName="FaturalandirmaModel.tbl_Urun">
               <MappingFragment StoreEntitySet="tbl_Urun">
-                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
-                <ScalarProperty Name="UrunNo" ColumnName="UrunNo" />
-                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
                 <ScalarProperty Name="UrunFiyat" ColumnName="UrunFiyat" />
+                <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+                <ScalarProperty Name="UrunNo" ColumnName="UrunNo" />
+                <ScalarProperty Name="UrunId" ColumnName="UrunId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
